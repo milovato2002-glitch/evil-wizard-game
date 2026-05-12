@@ -1,8 +1,5 @@
 import random
 
-# =============================================================================
-# BASE CHARACTER CLASS
-# =============================================================================
 
 class Character:
     """Base class for all characters in the game."""
@@ -31,10 +28,6 @@ class Character:
         actual_heal = self.health - old_health
         print(f"\n💚 {self.name} heals for {actual_heal} HP! ({self.health}/{self.max_health})")
 
-
-# =============================================================================
-# PLAYER CLASSES
-# =============================================================================
 
 class Warrior(Character):
     """Sturdy melee fighter with a powerful swing and a shield."""
@@ -68,7 +61,7 @@ class Warrior(Character):
         elif choice == "2":
             self.shield_wall()
         else:
-            print("Invalid choice – performing a basic attack instead.")
+            print("Invalid choice. Performing a basic attack instead.")
             self.attack(opponent)
 
 
@@ -106,7 +99,7 @@ class Mage(Character):
         elif choice == "2":
             self.magic_barrier()
         else:
-            print("Invalid choice – performing a basic attack instead.")
+            print("Invalid choice. Performing a basic attack instead.")
             self.attack(opponent)
 
 
@@ -143,7 +136,7 @@ class Archer(Character):
         elif choice == "2":
             self.evade()
         else:
-            print("Invalid choice – performing a basic attack instead.")
+            print("Invalid choice. Performing a basic attack instead.")
             self.attack(opponent)
 
 
@@ -177,16 +170,12 @@ class Paladin(Character):
         elif choice == "2":
             self.divine_shield()
         else:
-            print("Invalid choice – performing a basic attack instead.")
+            print("Invalid choice. Performing a basic attack instead.")
             self.attack(opponent)
 
 
-# =============================================================================
-# EVIL WIZARD (BOSS)
-# =============================================================================
-
 class EvilWizard(Character):
-    """The final boss – regenerates health and has random special attacks."""
+    """The final boss. Regenerates health and has random special attacks."""
 
     def __init__(self, name):
         super().__init__(name, health=200, attack_power=25)
@@ -221,25 +210,25 @@ class EvilWizard(Character):
             return
 
         if roll <= 40:
-            # Normal attack (40% chance)
+            # Normal attack, 40% chance
             damage = random.randint(self.attack_power - 5, self.attack_power + 5)
             opponent.health -= damage
             print(f"\n🧙 {self.name} strikes {opponent.name} for {damage} damage!")
 
         elif roll <= 65:
-            # Fireball (25% chance) – high damage
+            # Fireball, 25% chance, high damage
             damage = random.randint(self.attack_power + 5, self.attack_power + 20)
             opponent.health -= damage
             print(f"\n🔥 {self.name} hurls a FIREBALL at {opponent.name} for {damage} damage!")
 
         elif roll <= 85:
-            # Lightning Bolt (20% chance) – moderate damage
+            # Lightning Bolt, 20% chance, moderate damage
             damage = random.randint(self.attack_power, self.attack_power + 10)
             opponent.health -= damage
             print(f"\n⚡ {self.name} calls down LIGHTNING on {opponent.name} for {damage} damage!")
 
         else:
-            # Summon Minion (15% chance) – minion attacks, then wizard attacks
+            # Summon Minion, 15% chance, minion attacks then wizard attacks
             minion_damage = random.randint(10, 20)
             wizard_damage = random.randint(self.attack_power - 8, self.attack_power - 3)
             total = minion_damage + wizard_damage
@@ -249,10 +238,6 @@ class EvilWizard(Character):
             print(f"   {self.name} also attacks for {wizard_damage} damage!")
             print(f"   Total damage: {total}!")
 
-
-# =============================================================================
-# CHARACTER CREATION
-# =============================================================================
 
 def create_character():
     """Let the player choose a class and name their hero."""
@@ -285,10 +270,6 @@ def create_character():
         return Paladin(name)
 
 
-# =============================================================================
-# BATTLE SYSTEM
-# =============================================================================
-
 def battle(player, wizard):
     """Main turn-based battle loop between the player and the Evil Wizard."""
 
@@ -303,7 +284,7 @@ def battle(player, wizard):
         player.display_stats()
         wizard.display_stats()
 
-        # --- Player turn ---
+        # Player turn
         print("\n--- Your Turn ---")
         print("1. Basic Attack")
         print("2. Special Ability")
@@ -318,13 +299,13 @@ def battle(player, wizard):
         elif action == "3":
             player.heal()
         else:
-            print("Invalid choice – you hesitate and lose your turn!")
+            print("Invalid choice. You hesitate and lose your turn!")
 
         # Check if the wizard is defeated after the player's action
         if wizard.health <= 0:
             break
 
-        # --- Evil Wizard turn ---
+        # Evil Wizard turn
         print("\n--- Evil Wizard's Turn ---")
 
         # Wizard regenerates health each turn
@@ -339,16 +320,14 @@ def battle(player, wizard):
 
         turn += 1
 
-    # -------------------------------------------------------------------------
     # End-of-battle messages
-    # -------------------------------------------------------------------------
     print("\n" + "=" * 50)
 
     if wizard.health <= 0:
         print("🎉🎉🎉  VICTORY!  🎉🎉🎉")
         print(f"{player.name} has defeated {wizard.name}!")
         print(f"You survived with {player.health}/{player.max_health} HP.")
-        print("The realm is saved — for now...")
+        print("The realm is saved, for now...")
     else:
         print("💀💀💀  DEFEAT  💀💀💀")
         print(f"{wizard.name} has vanquished {player.name}...")
@@ -356,10 +335,6 @@ def battle(player, wizard):
 
     print("=" * 50)
 
-
-# =============================================================================
-# MAIN – ENTRY POINT
-# =============================================================================
 
 def main():
     """Start the game."""

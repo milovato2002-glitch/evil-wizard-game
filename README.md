@@ -26,7 +26,7 @@ Choose a character class, name your hero, and battle the Evil Wizard in turn-bas
 - **Randomized damage** for varied combat encounters
 - **Evil Wizard boss** that regenerates health every turn
 - **Random wizard attacks** including Fireball, Lightning, and Minion summoning
-- **Defensive abilities** — Shield Wall, Evade, and Divine Shield block attacks
+- **Defensive abilities**: Shield Wall, Evade, and Divine Shield block attacks
 - **Turn-based menu system** with clear feedback each round
 
 ## OOP Concepts Used
